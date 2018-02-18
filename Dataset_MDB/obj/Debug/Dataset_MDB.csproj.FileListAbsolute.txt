@@ -1,0 +1,9 @@
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\bin\Debug\Dataset_MDB.exe.config
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\bin\Debug\Dataset_MDB.exe
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\bin\Debug\Dataset_MDB.pdb
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.Form1.resources
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.Properties.Resources.resources
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.csproj.GenerateResource.Cache
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.exe
+D:\Программинг\с\new_shit\TFR\Dataset_MDB\obj\Debug\Dataset_MDB.pdb

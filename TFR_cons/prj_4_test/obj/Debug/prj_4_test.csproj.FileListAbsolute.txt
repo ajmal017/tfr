@@ -1,0 +1,7 @@
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\bin\Debug\prj_4_test.exe.config
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\bin\Debug\prj_4_test.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\bin\Debug\prj_4_test.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\obj\Debug\prj_4_test.csprojResolveAssemblyReference.cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\obj\Debug\prj_4_test.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\obj\Debug\prj_4_test.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\prj_4_test\obj\Debug\prj_4_test.pdb

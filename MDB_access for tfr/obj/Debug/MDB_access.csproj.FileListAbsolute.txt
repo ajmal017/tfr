@@ -1,0 +1,22 @@
+D:\Программинг\с\new_shit\MDB_access\MDB_access\bin\Debug\MDB_access.exe.config
+D:\Программинг\с\new_shit\MDB_access\MDB_access\bin\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\MDB_access\MDB_access\bin\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\MDB_access.csprojResolveAssemblyReference.cache
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\MDB_access.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\Interop.ADOX.dll
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\MDB_access.csproj.ResolveComReference.cache
+D:\Программинг\с\new_shit\MDB_access\MDB_access\obj\Debug\Interop.SmartCOM4Lib.dll
+D:\Программинг\с\new_shit\MDB_access\MDB_access\bin\Debug\Interop.SmartCOM4Lib.dll
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\MDB_access.csprojResolveAssemblyReference.cache
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\Interop.ADOX.dll
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\Interop.SmartCOM4Lib.dll
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\MDB_access.csproj.ResolveComReference.cache
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\MDB_access.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\obj\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\bin\Debug\MDB_access.exe.config
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\bin\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\bin\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\TFR\MDB_access for tfr\bin\Debug\Interop.SmartCOM4Lib.dll

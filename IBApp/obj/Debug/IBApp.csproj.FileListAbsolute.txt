@@ -1,0 +1,15 @@
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBApp.exe.config
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBApp.exe
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBApp.pdb
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\CSharpAPI.dll
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBSampleApp.exe
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBSampleApp.pdb
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\IBSampleApp.exe.config
+D:\Программинг\с\new_shit\TFR\IBApp\bin\Debug\CSharpAPI.pdb
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.csprojResolveAssemblyReference.cache
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.Form1.resources
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.Properties.Resources.resources
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.csproj.GenerateResource.Cache
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.exe
+D:\Программинг\с\new_shit\TFR\IBApp\obj\Debug\IBApp.pdb

@@ -1,0 +1,14 @@
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\DataGridDB.exe.config
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\DataGridDB.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\DataGridDB.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.csprojResolveAssemblyReference.cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.Form1.resources
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.Properties.Resources.resources
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.csproj.GenerateResource.Cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\obj\Debug\DataGridDB.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\Interop.SmartCOM4Lib.dll
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\DataGridDB\bin\Debug\MDB_access.exe.config

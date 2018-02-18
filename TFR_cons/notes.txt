@@ -1,0 +1,125 @@
+﻿reg expression tutorial with NOT example
+https://www.youtube.com/watch?v=rru3G7PLVjw&list=PL404-abh17ryiAEfPxJnh8RurxbE2JwJ5&index=25
+
+examples https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options?view=netframework-4.7.1 
+
+.net regex tester
+http://regexstorm.net/tester
+
+
+great regex reference book https://www.regular-expressions.info/dot.html
+
+/*
+			var options = new ChromeOptions();
+			options.AddArgument("--disable-gpu");
+			var ChromeDriver = new ChromeDriver(options);
+			ChromeDriver.Navigate().GoToUrl("https://www.reddit.com");
+
+			ChromeDriver.FindElementByXPath("//*[@id=\"search\"]/input[1]").Click();
+			ChromeDriver.Keyboard.SendKeys("test");
+			ChromeDriver.Keyboard.SendKeys(Keys.Enter);
+
+			var titles = ChromeDriver.FindElementsByClassName("search-result-header"); //search-result-header
+
+			foreach (var z in titles)
+				Console.WriteLine("selenium: " + z.Text);
+				*/
+
+ready regex is here: https://regexr.com/3h81m 
+
+			/*
+			string input = "11/17 9:40:46 AM - Sold 5000 of $GLBS at 1.14 - This is not spiking in sympathy with DCIX so I cut losses fast, no biggie, my HMNY gains were still bigger than this small loss, never forget rule #1 from Dogs are decidedly good pets. http://tim.ly/thebestrules cut losses quickly morenonxmldata<tag1>0002</tag1>morenonxmldata";
+			//MatchCollection regexp = Regex.Matches(aa, @"-\s*(.+?)\s([0-9])"); // @ - use back slashes 
+
+			Match match = Regex.Match(input, @"(.+?PM|.+?AM)\s-\s(.+?)\s(\d+)\sof\s(\$[A-Z]+)\sat\s(.+?)\s-\s(.+)");
+			for (int i = 1; i < match.Groups.Count; i++)
+			{
+				Console.WriteLine("match " + i + ": " + match.Groups[i].Value);
+			}
+			*/
+
+
+			/*
+			
+						// Get all messages. There are 10 messages on the page. After "load more" button click 10 messages more loaded
+			// We pull all messages from the page. Messages strted from date - signals. Other messages are junk
+			var InputString = ChromeDriver.FindElementsByClassName("GLS-JUXDFAD");
+			int i = 1;
+			foreach (var z in InputString) // Run cycle through all found elemts on the page
+			{
+				Console.WriteLine("***************message " + i + ": " + z.Text);
+
+				Match match = Regex.Match(z.Text, @"(.+?PM|.+?AM)\s-\s(.+?)\s(\d+)\sof\s(\$[A-Z]+)\sat\s(.+?)\s-\s(.+)"); // Run through all found groups. Group - ()
+				for (int k = 1; k < match.Groups.Count; k++)
+				{
+					Console.WriteLine("match " + k + ": " + match.Groups[k].Value);
+				}
+
+				i++;
+			}
+			
+			*
+
+			// Comma remove
+			string price = match.Groups[5].Value; // Need to get rid of , otherwise double.parse throw a error
+			price = price.Replace('.', ',');
+
+			// JS code is to remove a node from DOM. This code can be executer right in google chrome console 
+			var el = document.querySelector('.GLS-JUXDFAD'); el.parentNode.removeChild( el );
+			
+
+settings creation 
+https://stackoverflow.com/questions/453161/best-practice-to-save-application-settings-in-a-windows-forms-application 
+https://stackoverflow.com/questions/47495666/vs-2017-cant-access-properties-settings-from-another-project my topic
+
+
+working code for date parse from string to datetime 
+
+			Console.WriteLine("deal with regex datetime: ");
+			string input = "11/24 5:41:00 AM";
+			DateTime newDate;
+			CultureInfo enUS = new CultureInfo("en-US");
+			try
+			{
+				newDate = DateTime.ParseExact(input, "M/d h:mm:ss tt", CultureInfo.InvariantCulture);
+				Console.WriteLine("parse result: " + newDate);
+			}
+			catch (Exception err)
+			{
+				Console.WriteLine("error parsing input string. date format is wrong or string chaged " + err);
+			}
+
+
+google sheet with DB schema
+https://docs.google.com/spreadsheets/d/1SmaCdwy0YFyZTf32iPek_kfQf0QkYMoOCiioWVZdfhg/edit#gid=1875491390 
+
+export to xls
+http://www.c-sharpcorner.com/UploadFile/83fe73/solutions-to-export-data-from-database-to-excel-in-C-Sharp/
+
+export to google spread sheet
+https://developers.google.com/sheets/api/quickstart/dotnet 
+https://www.youtube.com/watch?v=yt8oCeb62m8
+
+multiple projects run
+https://www.youtube.com/watch?v=N6U_3Dxxkks 
+
+adding node to dom via JS:
+
+li:
+var newItem = document.createElement('Li');
+var textnode = document.createTextNode('Water');
+newItem.appendChild(textnode); 
+var list = document.getElementById('x-auto-1');
+list.insertBefore(newItem, list.childNodes[0]);
+
+adding div and inner html:
+
+var newItem = document.createElement('div');
+newItem.style = ('background-color:red'); // red bg color. can get rid of this property
+newItem.className = ('new_class');
+newItem.innerHTML = ('<img src="./profitly_files/TimCover1_bigger.jpg" width=50 height=50> some long text with ticker $DDSSD');
+var list = document.getElementById('x-auto-1');
+list.insertBefore(newItem, list.childNodes[0]);
+
+Very good MDB tutorai. All DB actions from an Indian guy:
+https://www.youtube.com/watch?v=1YEz85gFj2s 

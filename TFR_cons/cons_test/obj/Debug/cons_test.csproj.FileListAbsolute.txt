@@ -1,0 +1,16 @@
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\cons_test.exe.config
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\cons_test.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\cons_test.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\obj\Debug\cons_test.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\obj\Debug\cons_test.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\obj\Debug\cons_test.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\TFR_cons.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\WebDriver.dll
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\MDB_access.exe
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\Interop.SmartCOM4Lib.dll
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\TFR_cons.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\TFR_cons.exe.config
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\WebDriver.xml
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\MDB_access.pdb
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\bin\Debug\MDB_access.exe.config
+D:\Программинг\с\new_shit\TFR\TFR_cons\cons_test\obj\Debug\cons_test.csprojResolveAssemblyReference.cache
