@@ -48,7 +48,7 @@ namespace TFR_form_app
 			}
 			catch (Exception err)
 			{
-				ListViewLogging.log_add(form, "IngectTestMessage.cs", "Error: " + err, "red");
+				ListViewLogging.log_add(form, "parserListBox", "IngectTestMessage.cs", "Error: " + err, "red");
 				//Console.WriteLine("JS error. Can't inject test message" + err);
 			}
 

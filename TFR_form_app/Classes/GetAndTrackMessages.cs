@@ -66,7 +66,6 @@ namespace TFR_form_app
 				{
 					//ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "Console.SetCursorPosition(0, Console.CursorTop - 1); // Returned cursor to the previous line", "white");
 					//Helpers.ClearCurrentConsoleLine(); // Clear last line with parsed time
-					//Console.SetCursorPosition(0, Console.CursorTop - 1); // Returned cursor to the previous line
 				}
 
 				firstMessageDisplayed = true;
@@ -123,11 +122,11 @@ namespace TFR_form_app
 								{
 									lastMessageDate = DateTime.ParseExact(match.Groups[1].Value, "M/d h:mm:ss tt", CultureInfo.InvariantCulture);
 									//Console.WriteLine("Tracking messages started. First run. Last message date: " + match.Groups[1].Value);
-									ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "Tracking messages started. First run. Last message date: " + match.Groups[1].Value, "white");
+									ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "Tracking messages started. First run. Last message date: " + match.Groups[1].Value, "white");
 									firstRunFlag = false;
 
-									ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "Date added. New added message with date later than this is considered as new: " + GetAndTrackMMessages.lastMessageDate.AddMinutes(1).ToString("h:mm:ss tt"), "white");
-									ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "Last message parsing example. This output must be the same as the message at the page. Is everything correct?\nDate: " + match.Groups[1].Value + "\nDirection: " + match.Groups[2].Value + "\nQuantity: " + match.Groups[3].Value + "\nTicker: " + match.Groups[4].Value + "\nPrice: " + Double.Parse(price), "white");
+									ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "Date added. New added message with date later than this is considered as new: " + GetAndTrackMMessages.lastMessageDate.AddMinutes(1).ToString("h:mm:ss tt"), "white");
+									ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "Last message parsing example. This output must be the same as the message at the page. Is everything correct?\nDate: " + match.Groups[1].Value + "\nDirection: " + match.Groups[2].Value + "\nQuantity: " + match.Groups[3].Value + "\nTicker: " + match.Groups[4].Value + "\nPrice: " + Double.Parse(price), "white");
 
 									//Console.WriteLine("Date added. New added message with date later than this is considered as new: " + GetAndTrackMMessages.lastMessageDate.AddMinutes(1).ToString("h:mm:ss tt")); // DateTime.Now.Date.ToString("MM/dd/yyyy")
 									//Console.WriteLine("Last message parsing example. This output must be the same as the message at the page. Is everything correct?\nDate: " + match.Groups[1].Value + "\nDirection: " + match.Groups[2].Value + "\nQuantity: " + match.Groups[3].Value + "\nTicker: " + match.Groups[4].Value + "\nPrice: " + Double.Parse(price));
@@ -139,13 +138,13 @@ namespace TFR_form_app
 								//Console.WriteLine("TRACE: DateTime.Compare(h, lastMessageDate) > 0: " + (DateTime.Compare(h, lastMessageDate) > 0) + ". h: " + h + ". lastMessageDate: " + lastMessageDate);
 								if (DateTime.Compare(h, lastMessageDate) > 0)
 								{
-									ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "New message on the page is detected!", "white");
+									ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "New message on the page is detected!", "white");
 									lastMessageDate = DateTime.ParseExact(match.Groups[1].Value, "M/d h:mm:ss tt", CultureInfo.InvariantCulture);
 
 									// Bought
 									if (match.Groups[2].Value == "Bought" && bougtMessageFlag == true)
 									{
-										ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "********************ACTION: Bought", "green");
+										ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "********************ACTION: Bought", "green");
 										bougtMessageFlag = false;
 										messageTicker = match.Groups[4].Value;
 
@@ -166,7 +165,7 @@ namespace TFR_form_app
 									// Sold
 									if (match.Groups[2].Value == "Sold" && messageTicker == match.Groups[4].Value && bougtMessageFlag == false)
 									{
-										ListViewLogging.log_add(form, "GetAndTrackMessages.cs", "********************ACTION: Sold", "red");
+										ListViewLogging.log_add(form, "parserListBox", "GetAndTrackMessages.cs", "********************ACTION: Sold", "red");
 										bougtMessageFlag = true;
 
 										// DB Actions 

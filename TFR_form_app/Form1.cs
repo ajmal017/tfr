@@ -58,7 +58,7 @@ namespace TFR_form_app
 
 			ChromeDriver.Navigate().GoToUrl("https://profit.ly/profiding"); // Go to URL file:///D:/1/profitly.html https://profit.ly/profiding
 
-			// Listview setyp
+			// listView1 setyp
 			listView1.View = View.Details;
 			listView1.GridLines = true; // Horizoltal lines
 			listView1.Columns.Add("Time:");
@@ -66,6 +66,15 @@ namespace TFR_form_app
 			listView1.Columns.Add("Source:", -2, HorizontalAlignment.Left);
 			listView1.Columns.Add("Message:");
 			listView1.Columns[2].Width = 400;
+
+			// listView2 setyp
+			listView2.View = View.Details;
+			listView2.GridLines = true; // Horizoltal lines
+			listView2.Columns.Add("Time:");
+			listView2.Columns[0].Width = 60;
+			listView2.Columns.Add("Source:", -2, HorizontalAlignment.Left);
+			listView2.Columns.Add("Message:");
+			listView2.Columns[2].Width = 400;
 
 			// Broker connector
 			ibClient = new IBClient(signal);
@@ -103,8 +112,8 @@ namespace TFR_form_app
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			ListViewLogging.log_add(this, "Form1.cs", "Current culture:" + CultureInfo.CurrentCulture.Name, "white");
-			ListViewLogging.log_add(this, "Form1.cs", "Version: 02/14/2018 11:40PM", "white");
+			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Current culture:" + CultureInfo.CurrentCulture.Name, "white");
+			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Version: 02/26/2018 01:33PM", "white");
 
 
 			//var chromeDriverService = ChromeDriverService.CreateDefaultService();
@@ -173,7 +182,7 @@ namespace TFR_form_app
 			IsConnected = true;
 			HandleMessage(new ConnectionStatusMessage(true));
 			//ShowMessageOnPanel("void ibClient_NextValidId(int orderId): " + orderId); // Does not work. Invoke required
-			ListViewLogging.log_add(this, "void ibClient_NextValidId(int orderId)", "ibClient_NextValidId: " + orderId, "white");
+			ListViewLogging.log_add(this, "parserListBox","void ibClient_NextValidId(int orderId)", "ibClient_NextValidId: " + orderId, "white");
 
 
 		}
@@ -224,8 +233,11 @@ namespace TFR_form_app
 
 		private void UpdateUI(IBMessage message)
 		{
-			// http://nlog-project.org/download/ A logging lib
+			// http://nlog-project.org/download/ Logging lib
 			ShowMessageOnPanel("(UpdateUI) Message type: " + message.Type.ToString());
+
+			//ListViewLogging.log_add(this, "brokerListBox", "Form1.cs ShowMessageOnPanel", message.Type.ToString(), "white");
+
 
 			switch (message.Type)
 			{
@@ -294,7 +306,7 @@ namespace TFR_form_app
 					}
 				case MessageType.ManagedAccounts:
 					{
-						MessageBox.Show("case MessageType.ManagedAccounts:");
+						MessageBox.Show("case MessageType.ManagedAccounts: no message");
 						//orderManager.ManagedAccounts = ((ManagedAccountsMessage)message).ManagedAccounts;
 						//accountManager.ManagedAccounts = ((ManagedAccountsMessage)message).ManagedAccounts;
 						//exerciseAccount.Items.AddRange(((ManagedAccountsMessage)message).ManagedAccounts.ToArray());
@@ -387,6 +399,8 @@ namespace TFR_form_app
 
 		private void ShowMessageOnPanel(string message)
 		{
+			ListViewLogging.log_add(this, "brokerListBox", "Form1.cs ShowMessageOnPanel", message, "white");
+
 			message = ensureMessageHasNewline(message);
 
 			if (numberOfLinesInMessageBox >= MAX_LINES_IN_MESSAGE_BOX)
@@ -419,7 +433,7 @@ namespace TFR_form_app
 		{
 
 			if (message.RequestId > MarketDataManager.TICK_ID_BASE && message.RequestId < DeepBookManager.TICK_ID_BASE)
-				MessageBox.Show("fzzx");
+				MessageBox.Show("zzxxcc");
 			//marketDataManager.NotifyError(message.RequestId);
 			else if (message.RequestId > DeepBookManager.TICK_ID_BASE && message.RequestId < HistoricalDataManager.HISTORICAL_ID_BASE)
 				MessageBox.Show("ccvc");
@@ -445,6 +459,7 @@ namespace TFR_form_app
 			}
 			if (message.ErrorCode == 202)
 			{
+				MessageBox.Show("Form1.cs; HandleErrorMessage; message.ErrorCode == 202");
 			}
 		}
 
@@ -481,8 +496,7 @@ namespace TFR_form_app
 
 			if (!IsConnected) // False on startup
 			{
-
-				ListViewLogging.log_add(this, "Form1.cs", "Connect button clicked", "white");
+				ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Connect button clicked", "white");
 
 				int port;
 				string host = "127.0.0.1";
@@ -491,7 +505,7 @@ namespace TFR_form_app
 					host = "127.0.0.1";
 				try
 				{
-					port = 7496;
+					port = 4002; // 7496 - TWS. 4002 - IB Gateway
 					ibClient.ClientId = 1;
 					ibClient.ClientSocket.eConnect(host, port, ibClient.ClientId); // Connection
 
@@ -503,14 +517,14 @@ namespace TFR_form_app
 				}
 				catch (Exception)
 				{
-					ListViewLogging.log_add(this, "Form1.cs", "Please check your connection attributes", "white");
+					ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Please check your connection attributes", "white");
 				}
 			}
 			else
 			{
 				IsConnected = false;
 				ibClient.ClientSocket.eDisconnect();
-				ListViewLogging.log_add(this, "Form1.cs", "Connect button clicked while connection establichet - disconnect", "white");
+				ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Connect button clicked while connection establichet - disconnect", "white");
 			}
 		}
 
@@ -526,17 +540,22 @@ namespace TFR_form_app
 			//Order order = GetOrder();
 			//orderManager.PlaceOrder(contract, order);
 
-			ListViewLogging.log_add(this, "Form1.cs", "placeOrder.SendOrder('buy')", "green");
+			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "placeOrder.SendOrder('buy')", "green");
 			placeOrder.SendOrder("buy");
 
 		}
 
 		private void button11_Click(object sender, EventArgs e) // Sell button click
 		{
-			ListViewLogging.log_add(this, "Form1.cs", "placeOrder.SendOrder('sell')", "red");
+			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "placeOrder.SendOrder('sell')", "red");
 			placeOrder.SendOrder("sell");
 		}
 
+		private void label5_Click(object sender, EventArgs e)
+		{
+			listView2.Items.Clear();
+			messageBox.Clear();
+		}
 
 
 

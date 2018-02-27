@@ -6,49 +6,101 @@ namespace TFR_form_app
 {
 	class ListViewLogging
 	{
-		//public static void log_add(Form1 form, string log_source, string log_message, System.Drawing.Color color) // метод добавления записи в окно логов
-		public static void log_add(Form1 form, string log_source, string log_message, string color) // метод добавления записи в окно логов
+		
+		public static void log_add(Form1 form, string logTo, string log_source, string log_message, string color) // Add a record to the listBox window
 		{
-			DateTime time = DateTime.Now; // создали переменную для времени
+			DateTime time = DateTime.Now;
+			
+			if (logTo == "parserListBox") {
 
-			form.BeginInvoke(new Action(delegate()
+				form.BeginInvoke(new Action(delegate ()
+				{
+					form.listView1.Items.Add(time.ToString("HH: mm.ss"));
+					form.listView1.Items[form.listView1.Items.Count - 1].SubItems.Add(log_source);
+					form.listView1.Items[form.listView1.Items.Count - 1].SubItems.Add(log_message);
+					form.listView1.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent); // Make column autosized to its content
+					form.listView1.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+
+					switch (color) // расскарска строчек разными цветами
+					{
+						case "white":
+							form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.White;
+							break;
+
+						case "green":
+							form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Chartreuse;
+							break;
+
+						case "yellow":
+							form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Yellow;
+							break;
+
+						case "red":
+							form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Red;
+							break;
+					}
+
+
+					form.listView1.EnsureVisible(form.listView1.Items.Count - 1); // Auto scroll
+
+
+					if (form.listView1.Items.Count.ToString() == "100") // Quantity of records in the window
+					{
+						form.listView1.Items.RemoveAt(0);
+					}
+
+				})); // form.BeginInvoke
+
+			} // if
+
+
+			if (logTo == "brokerListBox")
 			{
-				form.listView1.Items.Add(time.ToString("HH: mm.ss")); // "HH: mm.ss" - шаблон вывода формата времени и даты
-				form.listView1.Items[form.listView1.Items.Count - 1].SubItems.Add(log_source);
-				form.listView1.Items[form.listView1.Items.Count - 1].SubItems.Add(log_message);
-				form.listView1.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent); // авто сайз колонки по ее содержимому
-				form.listView1.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent); // авто сайз колонки по ее содержимому
 
-
-				switch (color) // расскарска строчек разными цветами
+				form.BeginInvoke(new Action(delegate ()
 				{
-					case "white":
-						form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.White;
-						break;
-
-					case "green":
-						form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Chartreuse;
-						break;
-
-					case "yellow":
-						form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Yellow;
-						break;
-
-					case "red":
-						form.listView1.Items[form.listView1.Items.Count - 1].BackColor = Color.Red;
-						break;
-				}
+					form.listView2.Items.Add(time.ToString("HH: mm.ss"));
+					form.listView2.Items[form.listView2.Items.Count - 1].SubItems.Add(log_source);
+					form.listView2.Items[form.listView2.Items.Count - 1].SubItems.Add(log_message);
+					form.listView2.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent); // Make column autosized to its content
+					form.listView2.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
 
 
-				form.listView1.EnsureVisible(form.listView1.Items.Count - 1); // авто скрол
+					switch (color) // расскарска строчек разными цветами
+					{
+						case "white":
+							form.listView2.Items[form.listView2.Items.Count - 1].BackColor = Color.White;
+							break;
+
+						case "green":
+							form.listView2.Items[form.listView2.Items.Count - 1].BackColor = Color.Chartreuse;
+							break;
+
+						case "yellow":
+							form.listView2.Items[form.listView2.Items.Count - 1].BackColor = Color.Yellow;
+							break;
+
+						case "red":
+							form.listView2.Items[form.listView2.Items.Count - 1].BackColor = Color.Red;
+							break;
+					}
 
 
-				if (form.listView1.Items.Count.ToString() == "100") // подрезка количества записаей
-				{
-					form.listView1.Items.RemoveAt(0);
-				}
+					form.listView2.EnsureVisible(form.listView2.Items.Count - 1); // Auto scroll
 
-			})); // Invoke
+
+					if (form.listView2.Items.Count.ToString() == "100") // Quantity of records in the window
+					{
+						form.listView2.Items.RemoveAt(0);
+					}
+
+				})); // form.BeginInvoke
+
+			} // if
+
+
+
 
 		}
 	}

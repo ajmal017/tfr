@@ -88,6 +88,10 @@
 			this.status_CT = new System.Windows.Forms.Label();
 			this.messageBox = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.listView2 = new System.Windows.Forms.ListView();
+			this.label5 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -95,13 +99,14 @@
 			this.groupBox4.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listView1
 			// 
 			this.listView1.Location = new System.Drawing.Point(18, 42);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(960, 189);
+			this.listView1.Size = new System.Drawing.Size(956, 189);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			// 
@@ -614,7 +619,7 @@
 			this.messageBox.Multiline = true;
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.messageBox.Size = new System.Drawing.Size(960, 152);
+			this.messageBox.Size = new System.Drawing.Size(496, 152);
 			this.messageBox.TabIndex = 13;
 			// 
 			// label6
@@ -627,11 +632,55 @@
 			this.label6.TabIndex = 14;
 			this.label6.Text = "Broker log:";
 			// 
+			// textBox2
+			// 
+			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.textBox2.Location = new System.Drawing.Point(42, 24);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(100, 35);
+			this.textBox2.TabIndex = 15;
+			this.textBox2.Text = "AAPL";
+			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Controls.Add(this.textBox2);
+			this.groupBox7.Location = new System.Drawing.Point(792, 238);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(182, 78);
+			this.groupBox7.TabIndex = 9;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Parsing";
+			// 
+			// listView2
+			// 
+			this.listView2.Location = new System.Drawing.Point(520, 335);
+			this.listView2.Name = "listView2";
+			this.listView2.Size = new System.Drawing.Size(454, 153);
+			this.listView2.TabIndex = 15;
+			this.listView2.UseCompatibleStateImageBehavior = false;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label5.ForeColor = System.Drawing.Color.Blue;
+			this.label5.Location = new System.Drawing.Point(944, 491);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(30, 13);
+			this.label5.TabIndex = 16;
+			this.label5.Text = "clear";
+			this.label5.Click += new System.EventHandler(this.label5_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(990, 561);
+			this.ClientSize = new System.Drawing.Size(990, 554);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.listView2);
+			this.Controls.Add(this.groupBox7);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.messageBox);
 			this.Controls.Add(this.button13);
@@ -660,6 +709,8 @@
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox6.PerformLayout();
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -725,6 +776,10 @@
 		private System.Windows.Forms.Label status_CT;
 		private System.Windows.Forms.TextBox messageBox;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.GroupBox groupBox7;
+		public System.Windows.Forms.ListView listView2;
+		private System.Windows.Forms.Label label5;
 	}
 }
 

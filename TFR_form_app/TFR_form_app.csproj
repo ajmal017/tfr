@@ -156,11 +156,6 @@
     <Content Include="bin\Debug\IBApp.pdb" />
     <Content Include="bin\Debug\IBSampleApp.exe" />
     <Content Include="bin\Debug\IBSampleApp.pdb" />
-    <Content Include="bin\Debug\TFR_form_app 02.12.18 12_32.exe" />
-    <Content Include="bin\Debug\TFR_form_app 02.12.18.exe" />
-    <Content Include="bin\Debug\TFR_form_app 09.13.exe" />
-    <Content Include="bin\Debug\TFR_form_app 12_39.exe" />
-    <Content Include="bin\Debug\TFR_form_app 29.01.18.exe" />
     <Content Include="bin\Debug\TFR_form_app.exe" />
     <Content Include="bin\Debug\TFR_form_app.pdb" />
     <Content Include="bin\Debug\WebDriver.dll" />
