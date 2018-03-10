@@ -30,15 +30,15 @@ namespace IBApp.IBAppClasses
 			contract.Exchange = "SMART";
 			contract.Currency = "USD";
 			//contract.LastTradeDateOrContractMonth = this.conDetLastTradeDateOrContractMonth.Text;
-			contract.Strike = 10;
+			//contract.Strike = 10;
 			//contract.Multiplier = this.conDetMultiplier.Text;
-			contract.LocalSymbol = "";
 
 		}
 
 		public void SearchContract(string contractName) // Only the name of the contract is required for the search
 		{
 			contract.Symbol = contractName; // AAPL
+			contract.LocalSymbol = contractName;
 			ibClient.ClientSocket.reqContractDetails(CONTRACT_DETAILS_ID, contract); // https://interactivebrokers.github.io/tws-api/classIBApi_1_1EClient.html#ade440c6db838b548594981d800ea5ca9
 
 		}

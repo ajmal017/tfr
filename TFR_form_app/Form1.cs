@@ -48,9 +48,9 @@ namespace TFR_form_app
 		public IBApp.IBAppClasses.ContractSearch contractSearch; // Contract search class from IBApp project. ContractSearch class instance. Used for contract find before order execution
 		public IBApp.IBAppClasses.PlaceOrder placeOrder; // Place orderclass
 
-
-
-
+		public ListViewLogging logz;
+		
+		
 
 		public Form1()
 		{
@@ -76,33 +76,54 @@ namespace TFR_form_app
 			listView2.Columns.Add("Message:");
 			listView2.Columns[2].Width = 400;
 
+			// listView3 setyp
+			listView3.View = View.Details;
+			listView3.GridLines = true; // Horizoltal lines
+			listView3.Columns.Add("Time:");
+			listView3.Columns[0].Width = 60;
+			listView3.Columns.Add("Message:");
+			listView3.Columns[1].Width = 200;
+
+			logz = new ListViewLogging();
+
+
 			// Broker connector
 			ibClient = new IBClient(signal);
 			//contractManager = new ContractManager(ibClient, fundamentalsOutput, contractDetailsGrid);
 			contractSearch = new IBApp.IBAppClasses.ContractSearch(ibClient); // The class which search for the given contract
 			placeOrder = new IBApp.IBAppClasses.PlaceOrder(ibClient);
 
-			// Event handlers
-			ibClient.Error += ibClient_Error;
+		    // Event handlers
+		    ibClient.Error += ibClient_Error;
 			ibClient.ContractDetails += (reqId, contractDetails) => HandleMessage(new ContractDetailsMessage(reqId, contractDetails)); //  Request contract details https://interactivebrokers.github.io/tws-api/contract_details.html#gsc.tab=0
 			ibClient.ConnectionClosed += ibClient_ConnectionClosed; // Update UI when disconnect button is clicked
 
 			// Order events
 			ibClient.NextValidId += ibClient_NextValidId; // Receives next valid order id. Will be invoked automatically upon successfull API client connection. Used for sending connection status
+
 			ibClient.OrderStatus += (orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld) =>
-			 HandleMessage(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld));
+			HandleMessage(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld));
 			ibClient.OpenOrder += (orderId, contract, order, orderState) => HandleMessage(new OpenOrderMessage(orderId, contract, order, orderState));
 			ibClient.OpenOrderEnd += () => HandleMessage(new OpenOrderEndMessage());
-			ibClient.ContractDetails += (reqId, contractDetails) => HandleMessage(new ContractDetailsMessage(reqId, contractDetails));
-			ibClient.ContractDetailsEnd += (reqId) => HandleMessage(new ContractDetailsEndMessage());
+
+			// Search and contract details
+			ibClient.ContractDetails += (reqId, contractDetails) => HandleMessage(new ContractDetailsMessage(reqId, contractDetails)); // This method will provide all the contracts matching the contract provided.It can also be used to retrieve complete options and futures chains.
+			ibClient.ContractDetailsEnd += (reqId) => HandleMessage(new ContractDetailsEndMessage()); // After all contracts matching the request were returned, this method will mark the end of their reception
+
+			// Execution details
 			ibClient.ExecDetails += (reqId, contract, execution) => HandleMessage(new ExecutionMessage(reqId, contract, execution));
 			ibClient.ExecDetailsEnd += reqId => addTextToBox("ExecDetailsEnd. " + reqId + "\n");
+			
+			// Comission
 			ibClient.CommissionReport += commissionReport => HandleMessage(new CommissionMessage(commissionReport));
+
+			// FUndamential and historical data
 			ibClient.FundamentalData += (reqId, data) => HandleMessage(new FundamentalsMessage(data));
 			ibClient.HistoricalData += (reqId, date, open, high, low, close, volume, count, WAP, hasGaps) =>
 				HandleMessage(new HistoricalDataMessage(reqId, date, open, high, low, close, volume, count, WAP, hasGaps));
 
-			ibClient.Position += (account, contract, pos, avgCost) => HandleMessage(new PositionMessage(account, contract, pos, avgCost));
+			// Positoon
+			ibClient.Position += (account, contract, pos, avgCost) => HandleMessage(new PositionMessage(account, contract, pos, avgCost)); // provides the portfolio's open positions.
 
 
 
@@ -113,7 +134,7 @@ namespace TFR_form_app
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Current culture:" + CultureInfo.CurrentCulture.Name, "white");
-			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Version: 02/26/2018 01:33PM", "white");
+			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "Version: 03/01/2018 07:05PM", "white");
 
 
 			//var chromeDriverService = ChromeDriverService.CreateDefaultService();
@@ -234,16 +255,20 @@ namespace TFR_form_app
 		private void UpdateUI(IBMessage message)
 		{
 			// http://nlog-project.org/download/ Logging lib
-			ShowMessageOnPanel("(UpdateUI) Message type: " + message.Type.ToString());
 
-			//ListViewLogging.log_add(this, "brokerListBox", "Form1.cs ShowMessageOnPanel", message.Type.ToString(), "white");
-
+			// These messages are generated for evry event. Uncomment to see what type of messages are comeing. Importand for debigging 
+			//r
+			ListViewLogging.log_add(this, "messageTypeListBox", "Form1.cs", message.Type.ToString(), "white"); // Output to the separate listView
 
 			switch (message.Type)
 			{
 				case MessageType.ConnectionStatus:
 					{
+						
 						ConnectionStatusMessage statusMessage = (ConnectionStatusMessage)message;
+
+						ShowMessageOnPanel("Connection status: " + statusMessage.IsConnected );
+
 						if (statusMessage.IsConnected)
 						{
 
@@ -260,7 +285,7 @@ namespace TFR_form_app
 				case MessageType.Error:
 					{
 						ErrorMessage error = (ErrorMessage)message;
-						ShowMessageOnPanel("Request " + error.RequestId + ", Code: " + error.ErrorCode + " - " + error.Message);
+						ShowMessageOnPanel("ERROR. Request " + error.RequestId + ", Code: " + error.ErrorCode + " - " + error.Message);
 						HandleErrorMessage(error);
 						break;
 					}
@@ -294,13 +319,27 @@ namespace TFR_form_app
 						//scannerManager.UpdateUI(message);
 						break;
 					}
+
 				case MessageType.OpenOrder:
-				case MessageType.OpenOrderEnd:
+					{
+						var castedMessage = (OpenOrderMessage)message;
+						ShowMessageOnPanel("OpenOrder. Contract: " + castedMessage.Contract + " Order: " + castedMessage.Order + " OrderID: " + castedMessage.OrderId + " OrderState: " + castedMessage.OrderState + " Type:" + castedMessage.Type);
+						break;
+					}
+
 				case MessageType.OrderStatus:
+					{
+						var castedMessage = (OrderStatusMessage)message;
+						ShowMessageOnPanel("OrderStatus. AvgFillPrice: " + castedMessage.AvgFillPrice + " ClientId: " + castedMessage.ClientId + " Filled: " + castedMessage.Filled + " LastFillPrice: " + castedMessage.LastFillPrice + " OrderId:" + castedMessage.OrderId + " ParentID:" + castedMessage.ParentId + " PermID:" + castedMessage.PermId + " Remaining:" + castedMessage.Remaining + " Status:" + castedMessage.Status + " Type:" + castedMessage.Type + " WhyHwld:" + castedMessage.WhyHeld);
+						break;
+					}
+
+				
+				case MessageType.OpenOrderEnd:
 				case MessageType.ExecutionData:
 				case MessageType.CommissionsReport:
 					{
-						//orderManager.UpdateUI(message);
+						//orderManager.UpdateUI(message); ********************************************************
 						placeOrder.UpdateUI(message);
 						break;
 					}
@@ -342,17 +381,18 @@ namespace TFR_form_app
 						//accountManager.UpdateUI(message);
 						break;
 					}
-				case MessageType.ContractDataEnd:
+				case MessageType.ContractDataEnd: // This event occur after symbol search
 					{
 						//searchContractDetails.Enabled = true;
 						//contractManager.UpdateUI(message);
+
 						break;
 					}
-				case MessageType.ContractData:
+				case MessageType.ContractData: // This event occur after symbol search
 					{
-						HandleContractDataMessage((ContractDetailsMessage)message); // Type cast
-						var z = (ContractDetailsMessage)message;
-						ShowMessageOnPanel("SYMBOL: " + z.ContractDetails.Summary.Symbol + " successfully found at: " + z.ContractDetails.Summary.PrimaryExch + " exchange");
+						//HandleContractDataMessage((ContractDetailsMessage)message); // Type cast
+						var castedMessage = (ContractDetailsMessage)message;
+						ShowMessageOnPanel("SYMBOL: " + castedMessage.ContractDetails.Summary.Symbol + " successfully found at: " + castedMessage.ContractDetails.Summary.PrimaryExch + " exchange");
 						break;
 					}
 				case MessageType.FundamentalData:
@@ -383,9 +423,11 @@ namespace TFR_form_app
 					}
 				case MessageType.SoftDollarTiers:
 					{
-						//MessageBox.Show("SoftDollarTiers + orderManager.UpdateUI(message)");
 						//orderManager.UpdateUI(message);
 						placeOrder.UpdateUI(message);
+						var castedMessage = (ExecutionMessage)message;
+						ListViewLogging.log_add(this, "brokerListBox", "case MessageType.SoftDollarTiers:", castedMessage.ToString(), "yellow");
+						// ("PlaceOrder.cs private void HandleExecutionMessage(ExecutionMessage message): " + message.Execution.OrderId + " orderRef: " + message.Execution.OrderRef + " price: " + message.Execution.Price + " time: " + message.Execution.Time + " accountNumber" + message.Execution.AcctNumber); 
 						break;
 					}
 
@@ -505,7 +547,7 @@ namespace TFR_form_app
 					host = "127.0.0.1";
 				try
 				{
-					port = 4002; // 7496 - TWS. 4002 - IB Gateway
+					port = 7496; // 7496 - TWS. 4002 - IB Gateway
 					ibClient.ClientId = 1;
 					ibClient.ClientSocket.eConnect(host, port, ibClient.ClientId); // Connection
 
@@ -531,7 +573,7 @@ namespace TFR_form_app
 		private void search_Button(object sender, EventArgs e) // Search button click
 		{
 			contractSearch.SearchContract(textBox1.Text);
-			contractSearch.SearchContract("AAPL");
+			//contractSearch.SearchContract("AAPL");
 		}
 
 		private void button10_Click(object sender, EventArgs e) // Buy button click
@@ -551,15 +593,12 @@ namespace TFR_form_app
 			placeOrder.SendOrder("sell");
 		}
 
-		private void label5_Click(object sender, EventArgs e)
+		private void label5_Click(object sender, EventArgs e) // Clear log windows
 		{
 			listView2.Items.Clear();
+			listView3.Items.Clear();
 			messageBox.Clear();
 		}
-
-
-
-
 
 
 		#endregion

@@ -30,7 +30,6 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.listView1 = new System.Windows.Forms.ListView();
-			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +91,12 @@
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
 			this.listView2 = new System.Windows.Forms.ListView();
 			this.label5 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.listView3 = new System.Windows.Forms.ListView();
+			this.label8 = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -100,25 +105,17 @@
 			this.groupBox5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.groupBox7.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listView1
 			// 
-			this.listView1.Location = new System.Drawing.Point(18, 42);
+			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(956, 189);
+			this.listView1.Size = new System.Drawing.Size(952, 179);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label1.Location = new System.Drawing.Point(15, 26);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(57, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Parser log:";
 			// 
 			// menuStrip1
 			// 
@@ -571,6 +568,7 @@
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(82, 20);
 			this.textBox1.TabIndex = 2;
+			this.textBox1.Text = "AAPL";
 			// 
 			// search_Button2
 			// 
@@ -597,7 +595,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label4.Location = new System.Drawing.Point(773, 319);
+			this.label4.Location = new System.Drawing.Point(774, 9);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(128, 13);
 			this.label4.TabIndex = 11;
@@ -607,7 +605,7 @@
 			// 
 			this.status_CT.AutoSize = true;
 			this.status_CT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.status_CT.Location = new System.Drawing.Point(903, 319);
+			this.status_CT.Location = new System.Drawing.Point(904, 9);
 			this.status_CT.Name = "status_CT";
 			this.status_CT.Size = new System.Drawing.Size(71, 13);
 			this.status_CT.TabIndex = 12;
@@ -619,7 +617,7 @@
 			this.messageBox.Multiline = true;
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.messageBox.Size = new System.Drawing.Size(496, 152);
+			this.messageBox.Size = new System.Drawing.Size(191, 152);
 			this.messageBox.TabIndex = 13;
 			// 
 			// label6
@@ -650,13 +648,13 @@
 			this.groupBox7.Size = new System.Drawing.Size(182, 78);
 			this.groupBox7.TabIndex = 9;
 			this.groupBox7.TabStop = false;
-			this.groupBox7.Text = "Parsing";
+			this.groupBox7.Text = "Position symbol";
 			// 
 			// listView2
 			// 
-			this.listView2.Location = new System.Drawing.Point(520, 335);
+			this.listView2.Location = new System.Drawing.Point(215, 335);
 			this.listView2.Name = "listView2";
-			this.listView2.Size = new System.Drawing.Size(454, 153);
+			this.listView2.Size = new System.Drawing.Size(590, 153);
 			this.listView2.TabIndex = 15;
 			this.listView2.UseCompatibleStateImageBehavior = false;
 			// 
@@ -673,11 +671,74 @@
 			this.label5.Text = "clear";
 			this.label5.Click += new System.EventHandler(this.label5_Click);
 			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label7.Location = new System.Drawing.Point(435, 320);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(102, 13);
+			this.label7.TabIndex = 17;
+			this.label7.Text = "Broker log (listView):";
+			// 
+			// listView3
+			// 
+			this.listView3.Location = new System.Drawing.Point(811, 335);
+			this.listView3.Name = "listView3";
+			this.listView3.Size = new System.Drawing.Size(167, 153);
+			this.listView3.TabIndex = 18;
+			this.listView3.UseCompatibleStateImageBehavior = false;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label8.Location = new System.Drawing.Point(808, 319);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(76, 13);
+			this.label8.TabIndex = 19;
+			this.label8.Text = "Message type:";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Location = new System.Drawing.Point(18, 27);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(960, 205);
+			this.tabControl1.TabIndex = 20;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.listView1);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(952, 179);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Parser log";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(952, 179);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Positions DB";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(990, 554);
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.listView3);
+			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.listView2);
 			this.Controls.Add(this.groupBox7);
@@ -692,8 +753,6 @@
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
@@ -711,13 +770,14 @@
 			this.groupBox6.PerformLayout();
 			this.groupBox7.ResumeLayout(false);
 			this.groupBox7.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -780,6 +840,12 @@
 		private System.Windows.Forms.GroupBox groupBox7;
 		public System.Windows.Forms.ListView listView2;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label7;
+		public System.Windows.Forms.ListView listView3;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabPage2;
 	}
 }
 

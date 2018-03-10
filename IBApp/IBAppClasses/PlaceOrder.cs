@@ -10,6 +10,7 @@ using IBApi;
 
 using IBSampleApp.messages; // For using class from IBSampleApp: OpenOrderMessage etc.
 
+
 namespace IBApp.IBAppClasses
 {
 	public class PlaceOrder
@@ -21,7 +22,7 @@ namespace IBApp.IBAppClasses
 
 		public PlaceOrder(IBClient ibClient) // Constructor
 		{
-		
+			
 			this.ibClient = ibClient;
 
 			contract = new Contract(); // New instance of the contract class
@@ -30,13 +31,12 @@ namespace IBApp.IBAppClasses
 			contract.Exchange = "SMART";
 			contract.Currency = "USD";
 			//contract.LastTradeDateOrContractMonth = this.conDetLastTradeDateOrContractMonth.Text;
-			contract.Strike = 10;
+			//contract.Strike = 10;
 			//contract.Multiplier = this.conDetMultiplier.Text;
-			contract.LocalSymbol = "";
+			contract.LocalSymbol = "AAPL";
 
 
 			order = new Order();
-
 			//if (orderId != 0)
 				order.OrderId = 1;
 			//order.Action = "BUY"; // BUY
@@ -49,9 +49,12 @@ namespace IBApp.IBAppClasses
 			//order.ModelCode = modelCode.Text;
 			//order.Tif = timeInForce.Text; // TIME IN FORCE DAY
 			//if (!auxPrice.Text.Equals(""))
-				//order.AuxPrice = Double.Parse(auxPrice.Text);
+			//order.AuxPrice = Double.Parse(auxPrice.Text);
 			//if (!displaySize.Text.Equals(""))
-				//order.DisplaySize = Int32.Parse(displaySize.Text);
+			//order.DisplaySize = Int32.Parse(displaySize.Text);
+			order.Tif = "DAY";
+
+
 		}
 
 		public void SendOrder(string orderDirection)
@@ -62,13 +65,17 @@ namespace IBApp.IBAppClasses
 				//MessageBox.Show("buy order received");
 				order.Action = "BUY"; // BUY
 				ibClient.ClientSocket.placeOrder(unixTimestamp, contract, order);
+
+				MessageBox.Show("PlaceOrder.cs BUY. contract: " + contract.ToString() + " order: " + order.ToString());
 			}
 
 			if (orderDirection == "sell")
 			{
 				//MessageBox.Show("sell order received");
-				order.Action = "SELL"; // BUY
+				order.Action = "SELL"; // BUY    unixTimestamp, contract, order
 				ibClient.ClientSocket.placeOrder(unixTimestamp, contract, order);
+
+				MessageBox.Show("PlaceOrder.cs. SELL. contract: " + contract.ToString() + " order: " + order.ToString());
 			}
 		}
 
@@ -142,7 +149,7 @@ namespace IBApp.IBAppClasses
 			*/
 
 			// Execution results. WORKS GOOD!
-			MessageBox.Show("private void HandleExecutionMessage(ExecutionMessage message): " + message.Execution.OrderId + " orderRef: " + message.Execution.OrderRef + " price: " + message.Execution.Price + " time: " + message.Execution.Time + " accountNumber" + message.Execution.AcctNumber); 
+			//MessageBox.Show("PlaceOrder.cs private void HandleExecutionMessage(ExecutionMessage message): " + message.Execution.OrderId + " orderRef: " + message.Execution.OrderRef + " price: " + message.Execution.Price + " time: " + message.Execution.Time + " accountNumber" + message.Execution.AcctNumber); 
 
 		}
 
