@@ -25,57 +25,63 @@ namespace IBApp.IBAppClasses
 			
 			this.ibClient = ibClient;
 
+			// Contract and order were here
+
+
+		}
+
+		public void SendOrder(string orderDirection, string symbol)
+		{
+
+
 			contract = new Contract(); // New instance of the contract class
-			contract.Symbol = "AAPL";
+			contract.Symbol = "PHOT";
 			contract.SecType = "STK";
 			contract.Exchange = "SMART";
 			contract.Currency = "USD";
 			//contract.LastTradeDateOrContractMonth = this.conDetLastTradeDateOrContractMonth.Text;
 			//contract.Strike = 10;
 			//contract.Multiplier = this.conDetMultiplier.Text;
-			contract.LocalSymbol = "AAPL";
+			contract.LocalSymbol = "PHOT";
 
 
 			order = new Order();
 			//if (orderId != 0)
-				order.OrderId = 1;
+			order.OrderId = 1;
 			//order.Action = "BUY"; // BUY
 			order.OrderType = "MKT"; // MARKET
-			//if (!lmtPrice.Text.Equals(""))
-				//order.LmtPrice = Double.Parse(lmtPrice.Text); // Limit price
-			//if (!quantity.Text.Equals(""))
-				order.TotalQuantity = 1; // QUANTITY
-			//order.Account = account.Text;
-			//order.ModelCode = modelCode.Text;
-			//order.Tif = timeInForce.Text; // TIME IN FORCE DAY
-			//if (!auxPrice.Text.Equals(""))
-			//order.AuxPrice = Double.Parse(auxPrice.Text);
-			//if (!displaySize.Text.Equals(""))
-			//order.DisplaySize = Int32.Parse(displaySize.Text);
+									 //if (!lmtPrice.Text.Equals(""))
+									 //order.LmtPrice = Double.Parse(lmtPrice.Text); // Limit price
+									 //if (!quantity.Text.Equals(""))
+			order.TotalQuantity = 1; // QUANTITY
+									 //order.Account = account.Text;
+									 //order.ModelCode = modelCode.Text;
+									 //order.Tif = timeInForce.Text; // TIME IN FORCE DAY
+									 //if (!auxPrice.Text.Equals(""))
+									 //order.AuxPrice = Double.Parse(auxPrice.Text);
+									 //if (!displaySize.Text.Equals(""))
+									 //order.DisplaySize = Int32.Parse(displaySize.Text);
 			order.Tif = "DAY";
 
 
-		}
 
-		public void SendOrder(string orderDirection)
-		{
 			Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds; // Unix time in milleseconds is used as an order id
 		
-			if (orderDirection == "buy") {
-				//MessageBox.Show("buy order received");
+			if (orderDirection == "buy")
+			{
+
 				order.Action = "BUY"; // BUY
 				ibClient.ClientSocket.placeOrder(unixTimestamp, contract, order);
 
-				MessageBox.Show("PlaceOrder.cs BUY. contract: " + contract.ToString() + " order: " + order.ToString());
+				//MessageBox.Show("PlaceOrder.cs BUY. contract: " + contract.ToString() + " order: " + order.ToString());
 			}
 
 			if (orderDirection == "sell")
 			{
-				//MessageBox.Show("sell order received");
-				order.Action = "SELL"; // BUY    unixTimestamp, contract, order
+				order.Action = "SELL"; // BUY    
 				ibClient.ClientSocket.placeOrder(unixTimestamp, contract, order);
 
-				MessageBox.Show("PlaceOrder.cs. SELL. contract: " + contract.ToString() + " order: " + order.ToString());
+				//MessageBox.Show("PlaceOrder.cs. SELL. contract: " + contract.ToString() + " order: " + order.ToString());
 			}
 		}
 

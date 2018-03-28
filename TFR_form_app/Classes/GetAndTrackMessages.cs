@@ -154,9 +154,8 @@ namespace TFR_form_app
 										messageSoldVolume = Int32.Parse(match.Groups[3].Value);
 
 										// Boroker actions
-										form.contractSearch.SearchContract(match.Groups[4].Value); // Search parsed ticker at the exchange
-										form.placeOrder.SendOrder("buy"); // Send BUY order to the exchange
-
+										form.placeOrder.SendOrder("buy", match.Groups[4].Value); // Send BUY order to the exchange
+										Email.Send("Bought action. Ticker: " + match.Groups[4].Value + ". PLEASE CHECK THE ACCOUNT!!! ");
 
 									}
 
@@ -172,6 +171,11 @@ namespace TFR_form_app
 										DataBase.UpdateRecordClosePosition(DateTime.ParseExact(match.Groups[1].Value, "M/d h:mm:ss tt", CultureInfo.InvariantCulture), messageSoldVolume, Double.Parse(price), message_text);
 										DataBase.UpdateProfit(); // Uptade profit and calculate values
 										messageSoldVolume = 0; // Set volume to 0. If Sold signal occured - we need to start increment volume from scratch
+
+										// Boroker actions
+										MessageBox.Show("sold");
+										form.placeOrder.SendOrder("sell", match.Groups[4].Value); // Send SELL order to the exchange
+										Email.Send("Sold action. Ticker: " + match.Groups[4].Value + ". PLEASE CHECK THE ACCOUNT!!! ");
 									}
 								}
 							}

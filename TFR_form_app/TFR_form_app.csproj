@@ -84,10 +84,12 @@
   <ItemGroup>
     <Compile Include="Classes\ArraySync.cs" />
     <Compile Include="Classes\DataBase.cs" />
+    <Compile Include="Classes\Email.cs" />
     <Compile Include="Classes\GetAndTrackMessages.cs" />
     <Compile Include="Classes\Helpers.cs" />
     <Compile Include="Classes\InjectTestMessage.cs" />
     <Compile Include="Classes\ListViewLogging.cs" />
+    <Compile Include="Classes\TfrSettingsJson.cs" />
     <Compile Include="Classes\TradeMessage.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

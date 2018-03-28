@@ -457,7 +457,7 @@ namespace IBApp
 
 		private void button4_Click(object sender, EventArgs e) // Buy button click
 		{
-			placeOrder.SendOrder("buy");
+			placeOrder.SendOrder("buy", "PHOT");
 
 		}
 	}

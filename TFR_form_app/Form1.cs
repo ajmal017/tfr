@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using Newtonsoft.Json.Schema; 
+
 
 using OpenQA.Selenium.Chrome; // Chrome driver for parsing
 using OpenQA.Selenium;
@@ -22,12 +21,6 @@ using IBSampleApp.ui;
 using IBSampleApp.types;
 using IBSampleApp;
 
-using MailKit.Net.Smtp; // Smtp https://github.com/jstedfast/MailKit 
-using MailKit;
-using MimeKit;
-
-
-
 
 namespace TFR_form_app
 {
@@ -37,7 +30,8 @@ namespace TFR_form_app
 		public static ChromeDriver ChromeDriver = new ChromeDriver();
 		public static IJavaScriptExecutor js = (IJavaScriptExecutor)ChromeDriver; // Make JS instance for JS execution
 
-		public static Thread MessageTrackingThread;
+		public static Thread messageTrackingThread;
+		public Thread emailThread;
 
 		// Broker connector
 		delegate void MessageHandlerDelegate(IBMessage message); // Delegate for mesage handling
@@ -186,10 +180,10 @@ namespace TFR_form_app
 		{
 			//GetAndTrackMMessages.startTracking = true;
 
-			MessageTrackingThread = new Thread(new ThreadStart(DelegateMethod)); // A thread for message tracking. Message tracking exist in a parralell thread
-			MessageTrackingThread.IsBackground = true; // https://stackoverflow.com/questions/3360555/how-to-pass-parameters-to-threadstart-method-in-thread
-			MessageTrackingThread.Name = "MessageTrackingThread";
-			MessageTrackingThread.Start();
+			messageTrackingThread = new Thread(new ThreadStart(DelegateMethod)); // A thread for message tracking. Message tracking exist in a parralell thread
+			messageTrackingThread.IsBackground = true; // https://stackoverflow.com/questions/3360555/how-to-pass-parameters-to-threadstart-method-in-thread
+			messageTrackingThread.Name = "MessageTrackingThread";
+			messageTrackingThread.Start();
 
 		}
 
@@ -552,7 +546,7 @@ namespace TFR_form_app
 					host = "127.0.0.1";
 				try
 				{
-					port = 7496; // 7496 - TWS. 4002 - IB Gateway
+					port = TfrSettingsJson.ibGateWayPort; // 7496 - TWS. 4002 - IB Gateway
 					ibClient.ClientId = 1;
 					ibClient.ClientSocket.eConnect(host, port, ibClient.ClientId); // Connection
 
@@ -588,14 +582,14 @@ namespace TFR_form_app
 			//orderManager.PlaceOrder(contract, order);
 
 			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "placeOrder.SendOrder('buy')", "green");
-			placeOrder.SendOrder("buy");
+			placeOrder.SendOrder("buy", textBox1.Text);
 
 		}
 
 		private void button11_Click(object sender, EventArgs e) // Sell button click
 		{
 			ListViewLogging.log_add(this, "parserListBox", "Form1.cs", "placeOrder.SendOrder('sell')", "red");
-			placeOrder.SendOrder("sell");
+			placeOrder.SendOrder("sell", textBox1.Text);
 		}
 
 		private void label5_Click(object sender, EventArgs e) // Clear log windows
@@ -605,54 +599,26 @@ namespace TFR_form_app
 			messageBox.Clear();
 		}
 
-
-
 		#endregion
 
 		private void button12_Click(object sender, EventArgs r) // Send email
 		{
-			var message = new MimeMessage();
-			message.From.Add(new MailboxAddress("Boris B", "nextbb@yandex.ru"));
-			message.To.Add(new MailboxAddress("John Dow", "nextbb@yandex.ru"));
-			message.To.Add(new MailboxAddress("John Dow", "hunterhpm@gmail.com")); 
-
-			message.Subject = "TFR BOT Message";
-
-			message.Body = new TextPart("plain")
-			{
-				Text = @"Test message text"
-			};
-
-			using (var client = new SmtpClient())
-			{
-				// For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-				client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-
-				client.Connect("smtp.yandex.ru", 25, false);
-
-				// Note: only needed if the SMTP server requires authentication
-				client.Authenticate("nextbb", "baxgdl_123_!");
-
-				client.Send(message);
-				client.Disconnect(true);
-			}
+			messageTrackingThread = new Thread(new ThreadStart(EmailCallMethod)); // A thread for message tracking. Message tracking exist in a parralell thread
+			messageTrackingThread.IsBackground = true; // https://stackoverflow.com/questions/3360555/how-to-pass-parameters-to-threadstart-method-in-thread
+			messageTrackingThread.Name = "EmailSendingThread";
+			messageTrackingThread.Start();
 
 		}
 
+		private void EmailCallMethod() // new ThreadStart does not take any arguments this i call local method which passes the parameter - from
+		{
+			Email.Send("Sample text from Form1.cs");
+		}
+
+
 		private void button14_Click(object sender, EventArgs e) // Read json from file
 		{
-			try
-			{
-				string jsonFromFile = File.ReadAllText("tfr_settings.json");
-
-				JSchema jsonParsed = JSchema.Parse(jsonFromFile);
-				var x = Newtonsoft.Json.Linq.JObject.Parse(jsonFromFile);
-				MessageBox.Show("fn: " + x["FirstName"]);
-			}
-			catch (Exception exception)
-			{
-				MessageBox.Show("Form1.cs. Error opening Setting.json: " + exception.Message);
-			}
+			MessageBox.Show("port: " + TfrSettingsJson.ibGateWayPort.ToString());
 
 		}
 	}

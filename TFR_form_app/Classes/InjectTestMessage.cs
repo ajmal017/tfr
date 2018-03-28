@@ -13,7 +13,7 @@ namespace TFR_form_app
 		private static string jsString; // String for JS
 		private static List<string> elseMessages = new List<string>() { "Added", "Covered", "Shorted" }; // Collection other than bought and sold messages
 		private static int addedHouh = 0;
-		private static String symbol = "AAPL";
+		private static String symbol = "PHOT";
 
 		public static void InjectMsg(string messageType, Form1 form)
 		{
@@ -23,21 +23,21 @@ namespace TFR_form_app
 			// Experienced big trubble in DataBase.UpdateProfit() - Get the value of accumulated_sum_prcnt from the previous record then it will be used in a second query
 
 			
-			string z = GetAndTrackMMessages.lastMessageDate.AddHours(++addedHouh).ToString("h:mm:ss tt"); // Add an hour to the date of last message and inject it to the page thus it will be read as a new one 
+			string appendedTime = GetAndTrackMMessages.lastMessageDate.AddHours(++addedHouh).ToString("h:mm:ss tt"); // Add an hour to the date of last message and inject it to the page thus it will be read as a new one 
 
 			switch (messageType)
 			{
 				case "bought":
 					//Console.WriteLine("bought case detected");
-					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:green'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + z + " - Bought 3000 of $" + symbol + " at 1.59 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
+					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:green'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + appendedTime + " - Bought 3000 of $" + symbol + " at 1.59 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
 					break;
 				case "sold":
 					//Console.WriteLine("sold case detected");
-					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:red'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + z + " - Sold 2000 of $" + symbol + " at 1.60 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
+					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:red'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + appendedTime + " - Sold 2000 of $" + symbol + " at 1.60 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
 					break;
 				case "else":
 					//Console.WriteLine("else case detected");
-					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:gray'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + z + " - " + elseMessages[(new Random()).Next(0, 3)] + " 2000 of $ELSESYMBOL at 2.24 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
+					jsString = "var newItem = document.createElement('div'); newItem.style = ('background-color:gray'); newItem.className = ('GLS-JUXDFAD'); newItem.innerHTML = ('<img src=\"./profitly_files/TimCover1_bigger.jpg\" width=50 height=50> 11/28 " + appendedTime + " - " + elseMessages[(new Random()).Next(0, 3)] + " 2000 of $ELSESYMBOL at 2.24 - text message'); var list = document.getElementById('x-auto-1'); list.insertBefore(newItem, list.childNodes[0]);";
 					break;
 			}
 
