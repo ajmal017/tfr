@@ -9,8 +9,6 @@ namespace TFR_cons
 {
 	public static class ArraySync
 	{
-		//public static List<int> list1 = new List<int> { }; // Collection initialization
-		//public static List<int> list2 = new List<int> { };
 
 		public static List<DateTime> list1 = new List<DateTime> { }; // Collection initialization
 		public static List<DateTime> list2 = new List<DateTime> { };

@@ -9,7 +9,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-
 using System.Windows.Forms;
 using IBSampleApp.messages;
 using IBApi;
@@ -236,6 +235,8 @@ namespace IBSampleApp
 
         private void UpdateUI(IBMessage message)
         {
+			
+
 			ShowMessageOnPanel("(UpdateUI) Message type: " + message.Type.ToString()); 
 
 			switch (message.Type)
@@ -782,7 +783,7 @@ namespace IBSampleApp
 
         private Contract GetComboContract()
         {
-            Contract contract = new Contract();
+			Contract contract = new Contract();
             contract.Symbol = this.comboSymbol.Text;
             contract.SecType = this.comboSecType.Text;
             contract.Exchange = this.comboExchange.Text;
@@ -819,6 +820,7 @@ namespace IBSampleApp
 
         private void ShowMessageOnPanel(string message)
         {
+
             message = ensureMessageHasNewline(message);
 
             if (numberOfLinesInMessageBox >= MAX_LINES_IN_MESSAGE_BOX)

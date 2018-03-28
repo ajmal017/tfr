@@ -19,8 +19,8 @@ namespace MDB_access
 		static string bumaga_1 = "RTS-12.12_FT"; // security
 		static string ip = "mx2.ittrade.ru"; // broker server mx.ittrade.ru, mx2.ittrade.ru
 		static ushort port = 8443;
-		static string login = "BP11260"; //BP11260
-		static string password = "89PMDA2";
+		static string login = ""; //
+		static string password = "";
 		static string portfolio = "BP11260-RF-01"; // account
 		public TimeSpan time;
 

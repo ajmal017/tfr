@@ -19,3 +19,12 @@ D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\CSharpAPI.pdb
 D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\WebDriver.xml
 D:\Программинг\с\new_shit\TFR\TFR_form_app\obj\Debug\TFR_form_app.exe
 D:\Программинг\с\new_shit\TFR\TFR_form_app\obj\Debug\TFR_form_app.pdb
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\BouncyCastle.Crypto.dll
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\MailKit.dll
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\MimeKit.dll
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\MailKit.xml
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\MimeKit.xml
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\Newtonsoft.Json.dll
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\Newtonsoft.Json.Schema.dll
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\Newtonsoft.Json.xml
+D:\Программинг\с\new_shit\TFR\TFR_form_app\bin\Debug\Newtonsoft.Json.Schema.xml

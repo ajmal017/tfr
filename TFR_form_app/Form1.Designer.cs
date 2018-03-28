@@ -97,6 +97,8 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button12 = new System.Windows.Forms.Button();
+			this.button14 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -730,11 +732,35 @@
 			this.tabPage2.Text = "Positions DB";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// button12
+			// 
+			this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.button12.Location = new System.Drawing.Point(556, 514);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(96, 23);
+			this.button12.TabIndex = 3;
+			this.button12.Text = "Send email";
+			this.button12.UseVisualStyleBackColor = false;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
+			// 
+			// button14
+			// 
+			this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.button14.Location = new System.Drawing.Point(681, 514);
+			this.button14.Name = "button14";
+			this.button14.Size = new System.Drawing.Size(124, 23);
+			this.button14.TabIndex = 21;
+			this.button14.Text = "Read json file";
+			this.button14.UseVisualStyleBackColor = false;
+			this.button14.Click += new System.EventHandler(this.button14_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(990, 554);
+			this.Controls.Add(this.button14);
+			this.Controls.Add(this.button12);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.listView3);
@@ -846,6 +872,8 @@
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.Button button14;
 	}
 }
 

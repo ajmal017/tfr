@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using Newtonsoft.Json.Schema; 
 
 using OpenQA.Selenium.Chrome; // Chrome driver for parsing
 using OpenQA.Selenium;
@@ -20,6 +21,11 @@ using IBApi; // https://interactivebrokers.github.io/tws-api/interfaceIBApi_1_1E
 using IBSampleApp.ui;
 using IBSampleApp.types;
 using IBSampleApp;
+
+using MailKit.Net.Smtp; // Smtp https://github.com/jstedfast/MailKit 
+using MailKit;
+using MimeKit;
+
 
 
 
@@ -58,7 +64,7 @@ namespace TFR_form_app
 
 			ChromeDriver.Navigate().GoToUrl("https://profit.ly/profiding"); // Go to URL file:///D:/1/profitly.html https://profit.ly/profiding
 
-			// listView1 setyp
+			// listView1 setup
 			listView1.View = View.Details;
 			listView1.GridLines = true; // Horizoltal lines
 			listView1.Columns.Add("Time:");
@@ -67,7 +73,7 @@ namespace TFR_form_app
 			listView1.Columns.Add("Message:");
 			listView1.Columns[2].Width = 400;
 
-			// listView2 setyp
+			// listView2 setup
 			listView2.View = View.Details;
 			listView2.GridLines = true; // Horizoltal lines
 			listView2.Columns.Add("Time:");
@@ -76,7 +82,7 @@ namespace TFR_form_app
 			listView2.Columns.Add("Message:");
 			listView2.Columns[2].Width = 400;
 
-			// listView3 setyp
+			// listView3 setup
 			listView3.View = View.Details;
 			listView3.GridLines = true; // Horizoltal lines
 			listView3.Columns.Add("Time:");
@@ -256,8 +262,7 @@ namespace TFR_form_app
 		{
 			// http://nlog-project.org/download/ Logging lib
 
-			// These messages are generated for evry event. Uncomment to see what type of messages are comeing. Importand for debigging 
-			//r
+			// These messages are generated for evry event. Uncomment to see what type of messages are comeing. Importand for debugging 
 			ListViewLogging.log_add(this, "messageTypeListBox", "Form1.cs", message.Type.ToString(), "white"); // Output to the separate listView
 
 			switch (message.Type)
@@ -601,8 +606,54 @@ namespace TFR_form_app
 		}
 
 
+
 		#endregion
 
+		private void button12_Click(object sender, EventArgs r) // Send email
+		{
+			var message = new MimeMessage();
+			message.From.Add(new MailboxAddress("Boris B", "nextbb@yandex.ru"));
+			message.To.Add(new MailboxAddress("John Dow", "nextbb@yandex.ru"));
+			message.To.Add(new MailboxAddress("John Dow", "hunterhpm@gmail.com")); 
 
+			message.Subject = "TFR BOT Message";
+
+			message.Body = new TextPart("plain")
+			{
+				Text = @"Test message text"
+			};
+
+			using (var client = new SmtpClient())
+			{
+				// For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+				client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+				client.Connect("smtp.yandex.ru", 25, false);
+
+				// Note: only needed if the SMTP server requires authentication
+				client.Authenticate("nextbb", "baxgdl_123_!");
+
+				client.Send(message);
+				client.Disconnect(true);
+			}
+
+		}
+
+		private void button14_Click(object sender, EventArgs e) // Read json from file
+		{
+			try
+			{
+				string jsonFromFile = File.ReadAllText("tfr_settings.json");
+
+				JSchema jsonParsed = JSchema.Parse(jsonFromFile);
+				var x = Newtonsoft.Json.Linq.JObject.Parse(jsonFromFile);
+				MessageBox.Show("fn: " + x["FirstName"]);
+			}
+			catch (Exception exception)
+			{
+				MessageBox.Show("Form1.cs. Error opening Setting.json: " + exception.Message);
+			}
+
+		}
 	}
 }

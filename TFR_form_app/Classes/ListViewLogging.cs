@@ -10,7 +10,7 @@ namespace TFR_form_app
 		public static void log_add(Form1 form, string logTo, string log_source, string log_message, string color) // Add a record to the listBox window
 		{
 			DateTime time = DateTime.Now;
-			
+
 			if (logTo == "parserListBox") {
 
 				form.BeginInvoke(new Action(delegate ()

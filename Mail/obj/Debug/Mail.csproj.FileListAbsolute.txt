@@ -1,0 +1,7 @@
+D:\Программинг\с\new_shit\TFR\Mail\bin\Debug\Mail.exe.config
+D:\Программинг\с\new_shit\TFR\Mail\bin\Debug\Mail.exe
+D:\Программинг\с\new_shit\TFR\Mail\bin\Debug\Mail.pdb
+D:\Программинг\с\new_shit\TFR\Mail\obj\Debug\Mail.csproj.CoreCompileInputs.cache
+D:\Программинг\с\new_shit\TFR\Mail\obj\Debug\Mail.exe
+D:\Программинг\с\new_shit\TFR\Mail\obj\Debug\Mail.pdb
+D:\Программинг\с\new_shit\TFR\Mail\obj\Debug\Mail.csprojResolveAssemblyReference.cache
